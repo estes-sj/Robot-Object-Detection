@@ -59,13 +59,6 @@ ALIGN_NET = 0x3
 TREE_COORD = 0
 NET_COORD = 0
 
-# Global Detection
-global camera_0
-global display_0
-global detections_0
-global class_name
-global center
-
 # Class name and Center mutexes
 NameMutex = Lock()
 CenterMutex = Lock()
@@ -129,6 +122,7 @@ def align(object, objectCenter):
 
 # Computer Vision Control Class
 class Capstone:
+
 	# Global Detection
 	global camera_0
 	global display_0
@@ -138,13 +132,6 @@ class Capstone:
 	
 	# Task that runs the computer vision software
 	def ComputerVision(self):
-		# Global Detection
-		global camera_0
-		global display_0
-		global detections_0
-		global class_name
-		global center
-
 		# Camera Setup
 		# open streams for camera 0
 		camera_0 = jetson.utils.videoSource("csi://0")      # '/dev/video0' for V4L2
@@ -171,20 +158,13 @@ class Capstone:
 					print(class_name + " Detected!")
 
 				with CenterMutex:
-					center = [(detection.Right - detection.Left)/2, (detection.Bottom - detection.Top/2)]
+					center = getCenter()
 
 			
 
 
 	# Task that controls robot
 	def RobotControl(self):
-		# Global Detection
-		global camera_0
-		global display_0
-		global detections_0
-		global class_name
-		global center
-
 		# Local alignment Flags
 		LOADED = 1
 		ALIGNED = 0
@@ -296,37 +276,6 @@ class Capstone:
 
 			ALIGNMENT = 0x0
 
-
-def main():
-	# Global Detection
-	global camera_0
-	global display_0
-	global detections_0
-	global class_name
-	global center
-
-	# Initialize GPIO
-	GPIOsetup()
-
-	robot = Capstone()
-
-	# try:
-	# Multi Processing
-	CV = Process(target=robot.ComputerVision)
-	CV.start()
-	time.sleep(5)
-
-	RC = Process(target=robot.RobotControl)
-	RC.start()
-
-	CV.join()
-	RC.join()
-
-		
-
-	# except:
-	# 	pass
-
 #
 ### Misc Functions
 # Get Overlay Width
@@ -372,5 +321,16 @@ def getTime():
 
 # Run main
 if __name__ == '__main__':
-	main()
-
+   	# Initialize GPIO
+    GPIOsetup()
+    robot = Capstone()
+    # Multi-processing
+    manager = multiprocessing.Manager()
+    mutex = manager.Lock()
+    dado = manager.list([0, 0])
+    CV = multiprocessing.Process(target=robot.ComputerVision, args=(dado, mutex,))
+    RC = multiprocessing.Process(target=robot.RobotControl, args=(dado, mutex,))
+    CV.start()
+    RC.start()
+    CV.join()
+    RC.join()

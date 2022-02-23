@@ -76,12 +76,12 @@ def align(object, objectCenter):
 	coord = object
 
 	# Choose which coordinate to align with
-	# if (object == "Tree"):
-	# 	coord = TREE_COORD
-	# 	command = PIN_ARM
-	# elif (object == "Net"):
-	# 	coord = NET_COORD
-	# 	command = PIN_LAUNCH
+	if (object == "Pole"):
+		coord = TREE_COORD
+		command = PIN_ARM
+	elif (object == "Net"):
+		coord = NET_COORD
+		command = PIN_LAUNCH
 	
 	# Align with designated coordinates
 	# Right of Center
@@ -102,9 +102,10 @@ def align(object, objectCenter):
 	else:
 		ALLIGNMENT = 0x0
 		ALIGNED = 1
+		GPIO.output(PIN_CONTROL, GPIO.HIGH)
 		GPIO.output(PIN_LEFT, GPIO.LOW)
 		GPIO.output(PIN_RIGHT, GPIO.LOW)
-		GPIO.output(command, GPIO.HIGH)
+		
 	
 
 	# Visual Debug
@@ -132,7 +133,7 @@ def main():
 	while True:
 		try:
 			# open streams for camera 0
-			camera_0 = jetson.utils.videoSource("csi://0")      # '/dev/video0' for V4L2
+			camera_0 = jetson.utils.videoSource("/dev/video0")      # '/dev/video0' for V4L2
 			display_0 = jetson.utils.videoOutput("display://0") # 'my_video.mp4' for file
 			print(getTime() + "Camera 0 started...\n")
 			break
@@ -156,86 +157,71 @@ def main():
 		# Response from Arduino
 		RESPONSE = GPIO.input(PIN_RESPONSE)
 
-		state = nextState
+		# interact with detections on cam 0
+		for detection in detections_0:
+			# print(detection)
+			class_name = net.GetClassDesc(detection.ClassID)
+			print(class_name + " Detected!")
+			center = getCenter(detection)
+	
+			state = nextState
 
-		# State machine states
-		# Look for tree
-		if (state == IDLE_TREE):
-			print("Idle tree")
-			# When tree is detected begin aligning
-			if (DETECT_TREE == 1):
-				state = ALIGN_TREE
-		# Align with tree
-		elif (state == ALIGN_TREE):
-			print("Align tree")
-			# Once beads loaded begin looking for the net
-			if (LOADED == 1):
-				nextState = IDLE_NET
-		# Look for net
-		elif (state == IDLE_NET):
-			print("Idle net")
-			# When net is detected begin aligning
-			if (DETECT_NET == 1):
-				nextState = ALIGN_NET
-		# Align with net
-		elif (state == ALIGN_NET):
-			print("Align net")
-			# When beads are no longer loaded (fired) begin looking for tree
-			if (LOADED == 0):
-				nextState = IDLE_TREE
+			# State machine states
+			# Look for tree
+			if (state == IDLE_TREE):
+				print("Idle tree")
+				# When tree is detected begin aligning
+				if (DETECT_TREE == 1):
+					state = ALIGN_TREE
+			# Align with tree
+			elif (state == ALIGN_TREE):
+				print("Align tree")
+				# Once beads loaded begin looking for the net
+				if (LOADED == 1):
+					nextState = IDLE_NET
+			# Look for net
+			elif (state == IDLE_NET):
+				print("Idle net")
+				# When net is detected begin aligning
+				if (DETECT_NET == 1):
+					nextState = ALIGN_NET
+			# Align with net
+			elif (state == ALIGN_NET):
+				print("Align net")
+				# When beads are no longer loaded (fired) begin looking for tree
+				if (LOADED == 0):
+					nextState = IDLE_TREE
 
 
-		# State machine implementation
-		# Find Tree
-		if (state == IDLE_TREE):
-			ALIGNED = 0
-			# interact with detections on cam 0
-			for detection in detections_0:
-				# print(detection)
-				class_name = net.GetClassDesc(detection.ClassID)
-				print(class_name + " Detected!")
-				
+			# State machine implementation
+			# Find Tree
+			if (state == IDLE_TREE):
+				ALIGNED = 0
 				# Check if tree
-				if (class_name == "Tree"):
+				if (class_name == "Pole"):
 					DETECT_TREE = 1
 					DETECT_NET = 0
 					break
 
-		# Align with tree
-		elif (state == ALIGN_TREE):
-			# interact with detections on cam 0
-			for detection in detections_0:
-				# print(detection)
-				class_name = net.GetClassDesc(detection.ClassID)
-				print(class_name + " Detected!")
-				#getWidth(detection)
-				#getHeight(detection)
-				center = getCenter(detection)
-
+			# Align with tree
+			elif (state == ALIGN_TREE):
 				# Check if tree
-				if (class_name == "Tree"):
+				if (class_name == "Pole"):
 					# Align
-					while(ALIGNED != 1):
-						imgCenter = getImgCenter(display_0)
-						align(int(imgCenter[0]), int(center[0]))
+					imgCenter = getImgCenter(display_0)
+					align(int(imgCenter[0]), int(center[0]))
 
 					# Check response
 					if (RESPONSE == 1):
 						LOADED = 1
 						break
 
-			ALIGNMENT = 0x0
+				ALIGNMENT = 0x0
 
 
-		# Find net
-		elif (state == IDLE_NET):
-			ALIGNED =0
-			# interact with detections on cam 0
-			for detection in detections_0:
-				# print(detection)
-				class_name = net.GetClassDesc(detection.ClassID)
-				print(class_name + " Detected!")
-				
+			# Find net
+			elif (state == IDLE_NET):
+				ALIGNED =0
 				# Check if net
 				if (class_name == "Net"):
 					print(class_name)
@@ -243,30 +229,20 @@ def main():
 					DETECT_NET = 1
 					break
 
-		# Align with net
-		elif (state == ALIGN_NET):
-			# interact with detections on cam 0
-			for detection in detections_0:
-				# print(detection)
-				class_name = net.GetClassDesc(detection.ClassID)
-				print(class_name + " Detected!")
-				#getWidth(detection)
-				#getHeight(detection)
-				center = getCenter(detection)
+			# Align with net
+			elif (state == ALIGN_NET):
+				# Check if net
+				if (class_name == "Net"):
+					# Align
+					imgCenter = getImgCenter(display_0)
+					align(int(imgCenter[0]), int(center[0]))
 
-				while(ALIGNED != 1):
-					# Check if net
-					if (class_name == "Net"):
-						# Align
-						imgCenter = getImgCenter(display_0)
-						align(int(imgCenter[0]), int(center[0]))
+				# Check response
+				if (RESPONSE == 1):
+					LOADED = 0
+					break
 
-					# Check response
-					if (RESPONSE == 1):
-						LOADED = 0
-						break
-
-			ALIGNMENT = 0x0
+				ALIGNMENT = 0x0
 		
 
 # Get Overlay Width
