@@ -24,7 +24,7 @@ p = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
 # object detection setup
 #IDs(Cup = 1, Net = 2, Beads = 3, Pole = 4, Marshmallow = 5)
 #
-net = jetson.inference.detectNet(argv=['--model=/home/ece/jetson-inference/python/training/detection/ssd/models/capstone/ssd-mobilenet.onnx', 
+net = jetson.inference.detectNet(argv=['--threshold=0.70','--model=/home/ece/jetson-inference/python/training/detection/ssd/models/capstone/ssd-mobilenet.onnx', 
 '--labels=/home/ece/jetson-inference/python/training/detection/ssd/models/capstone/labels.txt', '--input-blob=input_0', '--output-cvg=scores', 
 '--output-bbox=boxes']) # custom training model
 
@@ -51,7 +51,7 @@ ALIGN_NET = 0x3
 
 # Alignment Coordinates
 TREE_COORD = 0
-NET_COORD = 0
+NET_COORD = 448
 
 
 # Setup GPIO Pins
@@ -74,6 +74,8 @@ def GPIOsetup():
 # Alignment Function
 def align(object, objectCenter):
 	coord = object
+	print("Center = " + str(object))
+	print("Object Center = " + str(objectCenter))
 
 	# Choose which coordinate to align with
 	if (object == "Pole"):
@@ -88,6 +90,7 @@ def align(object, objectCenter):
 	if (coord > objectCenter + 10):
 		ALIGNMENT = 0x1
 		ALIGNED = 0
+		GPIO.output(PIN_CONTROL, GPIO.LOW)
 		GPIO.output(PIN_LEFT, GPIO.HIGH)
 		GPIO.output(PIN_RIGHT, GPIO.LOW)
 		print("Right of Center")
@@ -95,12 +98,13 @@ def align(object, objectCenter):
 	elif (coord < objectCenter - 10):
 		ALIGNMENT = 0x2
 		ALIGNED = 0
+		GPIO.output(PIN_CONTROL, GPIO.LOW)
 		GPIO.output(PIN_LEFT, GPIO.LOW)
 		GPIO.output(PIN_RIGHT, GPIO.HIGH)
 		print("Left of Center")
 	#Other
 	else:
-		ALLIGNMENT = 0x0
+		ALIGNMENT = 0x0
 		ALIGNED = 1
 		GPIO.output(PIN_CONTROL, GPIO.HIGH)
 		GPIO.output(PIN_LEFT, GPIO.LOW)
@@ -119,8 +123,8 @@ def main():
 	GPIOsetup()
 
 	# State machine setup
-	state = 0x2
-	nextState = 0x2
+	state = IDLE_NET
+	nextState = IDLE_NET
 	print(str(state))
 
 	# Alignment Flags
@@ -133,7 +137,7 @@ def main():
 	while True:
 		try:
 			# open streams for camera 0
-			camera_0 = jetson.utils.videoSource("/dev/video0")      # '/dev/video0' for V4L2
+			camera_0 = jetson.utils.videoSource("csi://0")      # '/dev/video0' for V4L2
 			display_0 = jetson.utils.videoOutput("display://0") # 'my_video.mp4' for file
 			print(getTime() + "Camera 0 started...\n")
 			break
@@ -162,35 +166,36 @@ def main():
 			# print(detection)
 			class_name = net.GetClassDesc(detection.ClassID)
 			print(class_name + " Detected!")
-			center = getCenter(detection)
+			
 	
 			state = nextState
 
-			# State machine states
-			# Look for tree
-			if (state == IDLE_TREE):
-				print("Idle tree")
-				# When tree is detected begin aligning
-				if (DETECT_TREE == 1):
-					state = ALIGN_TREE
-			# Align with tree
-			elif (state == ALIGN_TREE):
-				print("Align tree")
-				# Once beads loaded begin looking for the net
-				if (LOADED == 1):
-					nextState = IDLE_NET
+			# # State machine states
+			# # Look for tree
+			# if (state == IDLE_TREE):
+			# 	print("Idle tree")
+			# 	# When tree is detected begin aligning
+			# 	if (DETECT_TREE == 1):
+			# 		state = ALIGN_TREE
+			# # Align with tree
+			# elif (state == ALIGN_TREE):
+			# 	print("Align tree")
+			# 	# Once beads loaded begin looking for the net
+			# 	if (LOADED == 1):
+			# 		nextState = IDLE_NET
 			# Look for net
-			elif (state == IDLE_NET):
-				print("Idle net")
+			if (state == IDLE_NET):		# needs to be changed back to elif
+				print("--IDLE NET--")
 				# When net is detected begin aligning
 				if (DETECT_NET == 1):
 					nextState = ALIGN_NET
 			# Align with net
 			elif (state == ALIGN_NET):
-				print("Align net")
+				print("--ALIGN NET--")
 				# When beads are no longer loaded (fired) begin looking for tree
 				if (LOADED == 0):
-					nextState = IDLE_TREE
+					# nextState = IDLE_TREE
+					nextState = IDLE_NET
 
 
 			# State machine implementation
@@ -201,20 +206,24 @@ def main():
 				if (class_name == "Pole"):
 					DETECT_TREE = 1
 					DETECT_NET = 0
-					break
 
 			# Align with tree
 			elif (state == ALIGN_TREE):
 				# Check if tree
 				if (class_name == "Pole"):
 					# Align
+					center = getCenter(detection)
 					imgCenter = getImgCenter(display_0)
-					align(int(imgCenter[0]), int(center[0]))
+					align(class_name, int(center[0]))
 
 					# Check response
 					if (RESPONSE == 1):
 						LOADED = 1
-						break
+
+						# Set all Control Pins LOW
+						GPIO.output(PIN_CONTROL, GPIO.LOW)
+						GPIO.output(PIN_LEFT, GPIO.LOW)
+						GPIO.output(PIN_RIGHT, GPIO.LOW)
 
 				ALIGNMENT = 0x0
 
@@ -227,20 +236,26 @@ def main():
 					print(class_name)
 					DETECT_TREE = 0
 					DETECT_NET = 1
-					break
 
 			# Align with net
 			elif (state == ALIGN_NET):
 				# Check if net
 				if (class_name == "Net"):
 					# Align
+					center = getCenter(detection)
 					imgCenter = getImgCenter(display_0)
-					align(int(imgCenter[0]), int(center[0]))
+					align(class_name, int(center[0]))
+					GPIO.output(PIN_LAUNCH, GPIO.HIGH)
 
 				# Check response
 				if (RESPONSE == 1):
 					LOADED = 0
-					break
+
+					# Set all Control Pins LOW
+					GPIO.output(PIN_CONTROL, GPIO.LOW)
+					GPIO.output(PIN_LEFT, GPIO.LOW)
+					GPIO.output(PIN_RIGHT, GPIO.LOW)
+
 
 				ALIGNMENT = 0x0
 		
@@ -259,8 +274,8 @@ def getHeight(detection):
 
 # Get Overlay Center
 def getCenter(detection):
-	center = [(detection.Right - detection.Left)/2, (detection.Bottom - detection.Top/2)]
-	print("Center = (" + str(center[0]) + ", " + str(center[1]) + ")")
+	center = [(detection.Right + detection.Left)/2, (detection.Bottom + detection.Top/2)]
+	#print("Center = (" + str(center[0]) + ", " + str(center[1]) + ")")
 	return center
 
 # Get Image Center
@@ -268,7 +283,7 @@ def getImgCenter(display_0):
 	width = display_0.GetWidth()
 	height = display_0.GetHeight()
 	imgCenter = [width/2, height/2]
-	print("Image Center = (" + str(imgCenter[0]) + ", " + str(imgCenter[1]) + ")" )
+	#print("Image Center = (" + str(imgCenter[0]) + ", " + str(imgCenter[1]) + ")" )
 	return imgCenter
 
 # Get Coordinates of Center of Box
