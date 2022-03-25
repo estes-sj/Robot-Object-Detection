@@ -1,0 +1,1439 @@
+Can't open display 
+
+detectNet -- loading detection network model from:
+          -- prototxt     NULL
+          -- model        /home/ece/jetson-inference/python/training/detection/ssd/models/capstone/ssd-mobilenet.onnx
+          -- input_blob   'input_0'
+          -- output_cvg   'scores'
+          -- output_bbox  'boxes'
+          -- mean_pixel   0.000000
+          -- mean_binary  NULL
+          -- class_labels /home/ece/jetson-inference/python/training/detection/ssd/models/capstone/labels.txt
+          -- threshold    0.700000
+          -- batch_size   1
+
+[TRT]    TensorRT version 8.0.1
+[TRT]    loading NVIDIA plugins...
+[TRT]    Registered plugin creator - ::GridAnchor_TRT version 1
+[TRT]    Registered plugin creator - ::GridAnchorRect_TRT version 1
+[TRT]    Registered plugin creator - ::NMS_TRT version 1
+[TRT]    Registered plugin creator - ::Reorg_TRT version 1
+[TRT]    Registered plugin creator - ::Region_TRT version 1
+[TRT]    Registered plugin creator - ::Clip_TRT version 1
+[TRT]    Registered plugin creator - ::LReLU_TRT version 1
+[TRT]    Registered plugin creator - ::PriorBox_TRT version 1
+[TRT]    Registered plugin creator - ::Normalize_TRT version 1
+[TRT]    Registered plugin creator - ::ScatterND version 1
+[TRT]    Registered plugin creator - ::RPROI_TRT version 1
+[TRT]    Registered plugin creator - ::BatchedNMS_TRT version 1
+[TRT]    Registered plugin creator - ::BatchedNMSDynamic_TRT version 1
+[0;31m[TRT]    Could not register plugin creator -  ::FlattenConcat_TRT version 1
+[0m[TRT]    Registered plugin creator - ::CropAndResize version 1
+[TRT]    Registered plugin creator - ::DetectionLayer_TRT version 1
+[TRT]    Registered plugin creator - ::EfficientNMS_ONNX_TRT version 1
+[TRT]    Registered plugin creator - ::EfficientNMS_TRT version 1
+[TRT]    Registered plugin creator - ::Proposal version 1
+[TRT]    Registered plugin creator - ::ProposalLayer_TRT version 1
+[TRT]    Registered plugin creator - ::PyramidROIAlign_TRT version 1
+[TRT]    Registered plugin creator - ::ResizeNearest_TRT version 1
+[TRT]    Registered plugin creator - ::Split version 1
+[TRT]    Registered plugin creator - ::SpecialSlice_TRT version 1
+[TRT]    Registered plugin creator - ::InstanceNormalization_TRT version 1
+[TRT]    detected model format - ONNX  (extension '.onnx')
+[TRT]    desired precision specified for GPU: FASTEST
+[0;33m[TRT]    requested fasted precision for device GPU without providing valid calibrator, disabling INT8
+[0m[TRT]    [MemUsageChange] Init CUDA: CPU +198, GPU +0, now: CPU 228, GPU 1484 (MiB)
+[TRT]    native precisions detected for GPU:  FP32, FP16
+[TRT]    selecting fastest native precision for GPU:  FP16
+[TRT]    attempting to open engine cache file /home/ece/jetson-inference/python/training/detection/ssd/models/capstone/ssd-mobilenet.onnx.1.1.8001.GPU.FP16.engine
+[TRT]    loading network plan from engine cache... /home/ece/jetson-inference/python/training/detection/ssd/models/capstone/ssd-mobilenet.onnx.1.1.8001.GPU.FP16.engine
+[0;32m[TRT]    device GPU, loaded /home/ece/jetson-inference/python/training/detection/ssd/models/capstone/ssd-mobilenet.onnx
+[0m[TRT]    [MemUsageChange] Init CUDA: CPU +0, GPU +0, now: CPU 244, GPU 1515 (MiB)
+[TRT]    Loaded engine size: 15 MB
+[TRT]    [MemUsageSnapshot] deserializeCudaEngine begin: CPU 244 MiB, GPU 1515 MiB
+[TRT]    Using cublas a tactic source
+[TRT]    [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +157, GPU +266, now: CPU 402, GPU 1827 (MiB)
+[TRT]    Using cuDNN as a tactic source
+[TRT]    [MemUsageChange] Init cuDNN: CPU +241, GPU +665, now: CPU 643, GPU 2492 (MiB)
+[TRT]    [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +0, GPU +0, now: CPU 643, GPU 2492 (MiB)
+[TRT]    Deserialization required 5607562 microseconds.
+[TRT]    [MemUsageSnapshot] deserializeCudaEngine end: CPU 643 MiB, GPU 2492 MiB
+[TRT]    [MemUsageSnapshot] ExecutionContext creation begin: CPU 643 MiB, GPU 2492 MiB
+[TRT]    Using cublas a tactic source
+[TRT]    [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +0, GPU +1, now: CPU 643, GPU 2493 (MiB)
+[TRT]    Using cuDNN as a tactic source
+[TRT]    [MemUsageChange] Init cuDNN: CPU +0, GPU +2, now: CPU 643, GPU 2495 (MiB)
+[TRT]    Total per-runner device memory is 14248960
+[TRT]    Total per-runner host memory is 71360
+[TRT]    Allocated activation device memory of size 8901632
+[TRT]    [MemUsageSnapshot] ExecutionContext creation end: CPU 645 MiB, GPU 2593 MiB
+[TRT]    
+[TRT]    CUDA engine context initialized on device GPU:
+[TRT]       -- layers       100
+[TRT]       -- maxBatchSize 1
+[TRT]       -- deviceMemory 8901632
+[TRT]       -- bindings     3
+[TRT]       binding 0
+                -- index   0
+                -- name    'input_0'
+                -- type    FP32
+                -- in/out  INPUT
+                -- # dims  4
+                -- dim #0  1
+                -- dim #1  3
+                -- dim #2  300
+                -- dim #3  300
+[TRT]       binding 1
+                -- index   1
+                -- name    'scores'
+                -- type    FP32
+                -- in/out  OUTPUT
+                -- # dims  3
+                -- dim #0  1
+                -- dim #1  3000
+                -- dim #2  3
+[TRT]       binding 2
+                -- index   2
+                -- name    'boxes'
+                -- type    FP32
+                -- in/out  OUTPUT
+                -- # dims  3
+                -- dim #0  1
+                -- dim #1  3000
+                -- dim #2  4
+[TRT]    
+[TRT]    binding to input 0 input_0  binding index:  0
+[TRT]    binding to input 0 input_0  dims (b=1 c=3 h=300 w=300) size=1080000
+[TRT]    binding to output 0 scores  binding index:  1
+[TRT]    binding to output 0 scores  dims (b=1 c=3000 h=3 w=1) size=36000
+[TRT]    binding to output 1 boxes  binding index:  2
+[TRT]    binding to output 1 boxes  dims (b=1 c=3000 h=4 w=1) size=48000
+[TRT]    
+[0;32m[TRT]    device GPU, /home/ece/jetson-inference/python/training/detection/ssd/models/capstone/ssd-mobilenet.onnx initialized.
+[0m[TRT]    detectNet -- number object classes:  3
+[TRT]    detectNet -- maximum bounding boxes:  3000
+[TRT]    detectNet -- loaded 3 class info entries
+[TRT]    detectNet -- number of object classes:  3
+[gstreamer] initialized gstreamer, version 1.14.5.0
+[gstreamer] gstCamera -- attempting to create device csi://0
+[gstreamer] gstCamera pipeline string:
+[gstreamer] nvarguscamerasrc sensor-id=0 ! video/x-raw(memory:NVMM), width=(int)1280, height=(int)720, framerate=30/1, format=(string)NV12 ! nvvidconv flip-method=2 ! video/x-raw(memory:NVMM) ! appsink name=mysink
+[gstreamer] gstCamera successfully created device csi://0
+[0;32m[video]  created gstCamera from csi://0
+[0m------------------------------------------------
+gstCamera video options:
+------------------------------------------------
+  -- URI: csi://0
+     - protocol:  csi
+     - location:  0
+  -- deviceType: csi
+  -- ioType:     input
+  -- codec:      raw
+  -- width:      1280
+  -- height:     720
+  -- frameRate:  30.000000
+  -- bitRate:    0
+  -- numBuffers: 4
+  -- zeroCopy:   true
+  -- flipMethod: rotate-180
+  -- loop:       0
+  -- rtspLatency 2000
+------------------------------------------------
+[0;31m[OpenGL] failed to open X11 server connection.
+[0m[0;31m[OpenGL] failed to create X11 Window.
+[0m[0;33mjetson.utils -- no output streams, creating fake null output
+[0m[gstreamer] opening gstCamera for streaming, transitioning pipeline to GST_STATE_PLAYING
+[gstreamer] gstreamer changed state from NULL to READY ==> mysink
+[gstreamer] gstreamer changed state from NULL to READY ==> capsfilter1
+[gstreamer] gstreamer changed state from NULL to READY ==> nvvconv0
+[gstreamer] gstreamer changed state from NULL to READY ==> capsfilter0
+[gstreamer] gstreamer changed state from NULL to READY ==> nvarguscamerasrc0
+[gstreamer] gstreamer changed state from NULL to READY ==> pipeline0
+[gstreamer] gstreamer changed state from READY to PAUSED ==> capsfilter1
+[gstreamer] gstreamer changed state from READY to PAUSED ==> nvvconv0
+[gstreamer] gstreamer changed state from READY to PAUSED ==> capsfilter0
+[gstreamer] gstreamer stream status CREATE ==> src
+[gstreamer] gstreamer changed state from READY to PAUSED ==> nvarguscamerasrc0
+[gstrea0
+[2022-03-25 15:16:57]	Camera 0 started...
+
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 1 objects in image
+Tree Detected!
+--IDLE TREE--
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:02]	----------CAMERA 0------------
+[2022-03-25 15:17:02]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:03]	----------CAMERA 0------------
+[2022-03-25 15:17:03]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:04]	----------CAMERA 0------------
+[2022-03-25 15:17:04]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:05]	----------CAMERA 0------------
+[2022-03-25 15:17:05]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:06]	----------CAMERA 0------------
+[2022-03-25 15:17:06]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:07]	----------CAMERA 0------------
+[2022-03-25 15:17:07]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:08]	----------CAMERA 0------------
+[2022-03-25 15:17:08]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:09]	----------CAMERA 0------------
+[2022-03-25 15:17:09]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:10]	----------CAMERA 0------------
+[2022-03-25 15:17:10]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:11]	----------CAMERA 0------------
+[2022-03-25 15:17:11]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:12]	----------CAMERA 0------------
+[2022-03-25 15:17:12]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:13]	----------CAMERA 0------------
+[2022-03-25 15:17:13]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:14]	----------CAMERA 0------------
+[2022-03-25 15:17:14]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:15]	----------CAMERA 0------------
+[2022-03-25 15:17:15]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:16]	----------CAMERA 0------------
+[2022-03-25 15:17:16]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:17]	----------CAMERA 0------------
+[2022-03-25 15:17:17]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:18]	----------CAMERA 0------------
+[2022-03-25 15:17:18]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:19]	----------CAMERA 0------------
+[2022-03-25 15:17:19]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:20]	----------CAMERA 0------------
+[2022-03-25 15:17:20]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:21]	----------CAMERA 0------------
+[2022-03-25 15:17:21]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:22]	----------CAMERA 0------------
+[2022-03-25 15:17:22]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in image
+[2022-03-25 15:17:23]	----------CAMERA 0------------
+[2022-03-25 15:17:23]	detected 0 objects in imageKilled

@@ -23,16 +23,12 @@ def main():
             # Setup gpio interface
             gpio.setup()
 
-            # Status LEDs
-            gpio.set_low(config.PIN_GREEN)
-            gpio.set_high(config.PIN_RED)
-
-
             # Begin Computer Vision
             detect.detection()
 
         except:
             print("Computer Vision Crashed ...")
+            gpio.set_low(config.PIN_REBOOT)
 
             pid = os.getpid()
             command = 'sudo kill -9 ' +str(pid)

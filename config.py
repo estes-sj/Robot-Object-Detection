@@ -4,16 +4,16 @@
 # Pin Definitions
 #
 # Outputs
-PIN_LEFT = 17		# white pin: 11
+PIN_LEFT = 26		# white pin: 37
 PIN_RIGHT = 27		# grey  pin: 13
 PIN_LAUNCH = 22		# purple pin: 15
 PIN_ARM = 10		# blue	pin: 19
 PIN_CONTROL = 9		# green	pin: 21
-PIN_GREEN = 26      # dark green pin: 37
-PIN_RED = 20         # red pin: 38
+PIN_GREEN = 17      # dark green pin: 11
+
 # Input
 PIN_RESPONSE = 11	# yellow	pin: 23
-
+PIN_REBOOT = 20     # red pin: 38
 #
 # State Machine
 #

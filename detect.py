@@ -9,7 +9,6 @@ from ctypes import alignment
 from hashlib import algorithms_guaranteed
 import jetson.inference
 import jetson.utils
-from art import *
 from time import sleep
 
 import numpy as np
@@ -46,6 +45,9 @@ def detection():
 
 
     while display_0.IsStreaming():
+
+        
+
         img_0 = camera_0.Capture()
         detections_0 = net.Detect(img_0)
         display_0.Render(img_0)
@@ -57,7 +59,14 @@ def detection():
 
         # Status LEDs
         gpio.set_high(config.PIN_GREEN)
-        gpio.set_low(config.PIN_RED)
+
+        REBOOT = gpio.read_pin(config.PIN_REBOOT)
+
+        # Pin to reboot
+        if (REBOOT == 1):
+            sudoPassword = 'Rah2022'
+            command = 'sudo reboot now'
+            os.system('echo %s|sudo -S %s' % (sudoPassword, command))
 
 
         # interact with detections on cam 0
@@ -68,6 +77,7 @@ def detection():
             
             # Response from Arduino
             RESUME = gpio.read_pin(config.PIN_RESPONSE)
+                        
 
             state = nextState
 

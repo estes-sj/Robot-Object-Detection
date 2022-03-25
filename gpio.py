@@ -14,10 +14,10 @@ def setup():
     GPIO.setup(config.PIN_ARM, GPIO.OUT, initial=GPIO.LOW)
     GPIO.setup(config.PIN_CONTROL, GPIO.OUT, initial=GPIO.LOW)
     GPIO.setup(config.PIN_GREEN, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(config.PIN_RED, GPIO.OUT, initial=GPIO.LOW)
 
     # Input
     GPIO.setup(config.PIN_RESPONSE, GPIO.IN)
+    GPIO.setup(config.PIN_REBOOT, GPIO.IN)
 
 # Set a pin HIGH
 def set_high(PIN):
