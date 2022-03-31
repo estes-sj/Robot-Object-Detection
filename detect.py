@@ -20,7 +20,7 @@ def detection():
     sudoPassword = 'Rah2022'
     command = 'sudo systemctl restart nvargus-daemon'
 
-    net = jetson.inference.detectNet(argv=['--threshold=0.70','--model=/home/ece/jetson-inference/python/training/detection/ssd/models/capstone/ssd-mobilenet.onnx', 
+    net = jetson.inference.detectNet(argv=['--threshold=0.65','--model=/home/ece/jetson-inference/python/training/detection/ssd/models/capstone/ssd-mobilenet.onnx', 
     '--labels=/home/ece/jetson-inference/python/training/detection/ssd/models/capstone/labels.txt', '--input-blob=input_0', '--output-cvg=scores', 
     '--output-bbox=boxes']) # custom training model
 
@@ -45,9 +45,6 @@ def detection():
 
 
     while display_0.IsStreaming():
-
-        
-
         img_0 = camera_0.Capture()
         detections_0 = net.Detect(img_0)
         display_0.Render(img_0)
@@ -56,17 +53,6 @@ def detection():
         # print the detections
         print(misc.getTime() + "----------CAMERA 0------------")
         print(misc.getTime() + "detected {:d} objects in image".format(len(detections_0)))
-
-        # Status LEDs
-        gpio.set_high(config.PIN_GREEN)
-
-        REBOOT = gpio.read_pin(config.PIN_REBOOT)
-
-        # Pin to reboot
-        if (REBOOT == 1):
-            sudoPassword = 'Rah2022'
-            command = 'sudo reboot now'
-            os.system('echo %s|sudo -S %s' % (sudoPassword, command))
 
 
         # interact with detections on cam 0
@@ -173,3 +159,14 @@ def detection():
             elif (state == config.STALL):
                 print("Class = " + str(class_name) + " Coord = " + str(center))
                 pass
+
+        # Status LEDs
+        gpio.set_high(config.PIN_GREEN)
+
+        REBOOT = gpio.read_pin(config.PIN_REBOOT)
+
+        # Pin to reboot
+        if (REBOOT == 1):
+            sudoPassword = 'Rah2022'
+            command = 'sudo reboot now'
+            os.system('echo %s|sudo -S %s' % (sudoPassword, command))

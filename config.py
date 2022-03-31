@@ -35,5 +35,5 @@ RESPONSE = 0
 #
 # Alignment Coordinates
 #
-TREE_COORD = 875
+TREE_COORD = 840
 NET_COORD = 425
