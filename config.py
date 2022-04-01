@@ -22,6 +22,7 @@ ALIGN_TREE = 0x1
 IDLE_NET = 0x2
 ALIGN_NET = 0x3
 STALL = 0x4
+IDLE = 0x5
 
 #
 # Alignment Flags
@@ -33,7 +34,14 @@ DETECT_NET = 0
 RESPONSE = 0
 
 #
-# Alignment Coordinates
+# Alignment Coordinates (Pixels)
 #
-TREE_COORD = 840
-NET_COORD = 425
+ALIGN_WIDTH = 15        # Multiply by 2 to get width of box
+TREE_COORD = 850        # Robot Right = Subtract,  Robot Left = Add
+NET_COORD = 420         # Robot Right = Add, Robot Left = Subtract
+
+#
+# Number of Iterations
+#
+CURRENT_RUNS = 0
+MAX_RUNS = 4

@@ -17,7 +17,7 @@ def alignment(object1, objectCenter):
         command = config.PIN_LAUNCH
 
     # If Aligned throw brake flag
-    if ((coord < objectCenter + 20) & (coord > objectCenter - 20)):
+    if ((coord < objectCenter + config.ALIGN_WIDTH) & (coord > objectCenter - config.ALIGN_WIDTH)):
         config.ALIGNED = 1
         gpio.set_high(config.PIN_CONTROL)
         gpio.set_low(config.PIN_LEFT)
@@ -28,6 +28,7 @@ def alignment(object1, objectCenter):
             config.LOADED = 1
         elif (object1 == "Net"):
             config.LOADED = 0
+
 
     else:
         config.ALIGNED = 0

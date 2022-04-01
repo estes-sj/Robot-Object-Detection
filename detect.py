@@ -27,6 +27,7 @@ def detection():
     # State machine setup
     state = config.IDLE_TREE
     nextState = config.IDLE_TREE
+    config.CURRENT_RUNS = 0
     print(str(state))
 
     while True:
@@ -67,97 +68,115 @@ def detection():
 
             state = nextState
 
-            # State machine states
-            # Look for tree
-            if (state == config.IDLE_TREE):
-                print("--IDLE TREE--")
-                # When tree is detected begin aligning
-                if (config.DETECT_TREE == 1):
-                    nextState = config.ALIGN_TREE
-            # Align with tree
-            elif (state == config.ALIGN_TREE):
-                print("--ALIGN TREE--")
-                # Once beads loaded begin looking for the net
-                if (config.ALIGNED == 1):
-                    nextState = config.STALL
-                    config.DETECT_TREE = 0
-            # Look for net
-            elif (state == config.IDLE_NET):		# needs to be changed back to elif
-                print("--IDLE NET--")
-                # When net is detected begin aligning
-                if (config.DETECT_NET == 1):
-                    nextState = config.ALIGN_NET
-            # Align with net
-            elif (state == config.ALIGN_NET):
-                print("--ALIGN NET--")
-                # When beads are no longer loaded (fired) begin looking for tree
-                if (config.ALIGNED == 1):
-                    # nextState = config.IDLE_TREE
-                    nextState = config.STALL
-                    config.DETECT_NET = 0
+            if (config.CURRENT_RUNS < config.MAX_RUNS):
+                print("---In Progress---")
+                print("Current Iterations: " + str(config.CURRENT_RUNS))
+                
+                # State machine states
+                # Look for tree
+                if (state == config.IDLE_TREE):
+                    print("--IDLE TREE--")
+                    # When tree is detected begin aligning
+                    if (config.DETECT_TREE == 1):
+                        nextState = config.ALIGN_TREE
+                # Align with tree
+                elif (state == config.ALIGN_TREE):
+                    print("--ALIGN TREE--")
+                    # Once beads loaded begin looking for the net
+                    if (config.ALIGNED == 1):
+                        nextState = config.STALL
+                        config.DETECT_TREE = 0
+                # Look for net
+                elif (state == config.IDLE_NET):		# needs to be changed back to elif
+                    print("--IDLE NET--")
+                    # When net is detected begin aligning
+                    if (config.DETECT_NET == 1):
+                        nextState = config.ALIGN_NET
+                # Align with net
+                elif (state == config.ALIGN_NET):
+                    print("--ALIGN NET--")
+                    # When beads are no longer loaded (fired) begin looking for tree
+                    if (config.ALIGNED == 1):
+                        # nextState = config.IDLE_TREE
+                        nextState = config.STALL
+                        config.DETECT_NET = 0
 
-            # Stall state
-            elif (state == config.STALL):
-                print("--config.STALL--")
-                # If given resume command and the beads are loaded begin looking for net
-                if (RESUME == 1 and config.LOADED == 1):
-                    config.ALIGNED = 0
-                    nextState = config.IDLE_NET
-                # If given resume command and the beads have been launched begin looking for tree
-                elif (RESUME == 1 and config.LOADED == 0):
-                    config.ALIGNED = 0
-                    nextState = config.IDLE_TREE
+                # Stall state
+                elif (state == config.STALL):
+                    print("--STALL--")
 
-            #
-            # State machine implementation
-            # Find Tree
-            if (state == config.IDLE_TREE):
-                config.ALIGNED = 0
+                    # If given resume command and the beads are loaded begin looking for net
+                    if (RESUME == 1 and config.LOADED == 1):
+                        config.ALIGNED = 0
+                        nextState = config.IDLE_NET
+                        # Add Iteration
+                        config.CURRENT_RUNS += 1
+                    # If given resume command and the beads have been launched begin looking for tree
+                    elif (RESUME == 1 and config.LOADED == 0):
+                        config.ALIGNED = 0
+                        nextState = config.IDLE_TREE
+                        # Add Iteration
+                        config.CURRENT_RUNS += 1
+
+
+                #
+                # State machine implementation
+                # Find Tree
+                if (state == config.IDLE_TREE):
+                    config.ALIGNED = 0
+                    # Set all Control Pins LOW
+                    gpio.set_low(config.PIN_CONTROL)
+                    gpio.set_low(config.PIN_ARM)
+                    gpio.set_low(config.PIN_LAUNCH)
+                    # Check if tree
+                    if (class_name == "Tree"):
+                        config.DETECT_TREE = 1
+                        config.DETECT_NET = 0
+
+                # Align with tree
+                elif (state == config.ALIGN_TREE):
+                    # Check if tree
+                    if (class_name == "Tree"):
+                        # Align
+                        center = misc.getCenter(detection)
+                        imgCenter = misc.getImgCenter(display_0)
+                        align.alignment(class_name, int(center[0]))
+
+
+                # Find net
+                elif (state == config.IDLE_NET):
+                    config.ALIGNED =0
+                    # Set all Control Pins LOW
+                    gpio.set_low(config.PIN_CONTROL)
+                    gpio.set_low(config.PIN_ARM)
+                    gpio.set_low(config.PIN_LAUNCH)
+                    # Check if net
+                    if (class_name == "Net"):
+                        print(class_name)
+                        config.DETECT_TREE = 0
+                        config.DETECT_NET = 1
+
+                # Align with net
+                elif (state == config.ALIGN_NET):
+                    # Check if net
+                    if (class_name == "Net"):
+                        # Align
+                        center = misc.getCenter(detection)
+                        imgCenter = misc.getImgCenter(display_0)
+                        align.alignment(class_name, int(center[0]))
+
+                # Stall State
+                elif (state == config.STALL):
+                    print("Class = " + str(class_name) + " Coord = " + str(center))
+                    pass
+
+            else:
+                print("---Actions Complete---")
+                print("Iterations Completed: " + str(config.CURRENT_RUNS))
                 # Set all Control Pins LOW
                 gpio.set_low(config.PIN_CONTROL)
                 gpio.set_low(config.PIN_ARM)
                 gpio.set_low(config.PIN_LAUNCH)
-                # Check if tree
-                if (class_name == "Tree"):
-                    config.DETECT_TREE = 1
-                    config.DETECT_NET = 0
-
-            # Align with tree
-            elif (state == config.ALIGN_TREE):
-                # Check if tree
-                if (class_name == "Tree"):
-                    # Align
-                    center = misc.getCenter(detection)
-                    imgCenter = misc.getImgCenter(display_0)
-                    align.alignment(class_name, int(center[0]))
-
-
-            # Find net
-            elif (state == config.IDLE_NET):
-                config.ALIGNED =0
-                # Set all Control Pins LOW
-                gpio.set_low(config.PIN_CONTROL)
-                gpio.set_low(config.PIN_ARM)
-                gpio.set_low(config.PIN_LAUNCH)
-                # Check if net
-                if (class_name == "Net"):
-                    print(class_name)
-                    config.DETECT_TREE = 0
-                    config.DETECT_NET = 1
-
-            # Align with net
-            elif (state == config.ALIGN_NET):
-                # Check if net
-                if (class_name == "Net"):
-                    # Align
-                    center = misc.getCenter(detection)
-                    imgCenter = misc.getImgCenter(display_0)
-                    align.alignment(class_name, int(center[0]))
-
-
-            # Stall State
-            elif (state == config.STALL):
-                print("Class = " + str(class_name) + " Coord = " + str(center))
                 pass
 
         # Status LEDs
