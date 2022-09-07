@@ -1,7 +1,7 @@
 # VMI ECE Robot Object Detection
 ## _2022 IEEE SoutheastCon Hardware Competition_
 
-Built using the jetson-inference repository, this project provides visual objection detection for a robot capable of autonomous line-tracking znd retrieiving/throwing beads. The hardware used for the object detection is a NVIDIA Jetson Jetpack Nano 4GB and generic CSI camera.
+Built using the jetson-inference repository, this project provides visual objection detection for a robot capable of autonomous line-tracking znd retrieiving/throwing beads. The hardware used for the object detection is a NVIDIA Jetson Nano 4GB and generic CSI camera.
 
 Trained on 1500+ self-taken images. the customly built training model was on:
 - Mardi-Gras style beads of various color
