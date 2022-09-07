@@ -3,7 +3,7 @@
 
 Built using the jetson-inference repository, this project provides visual objection detection for a robot capable of autonomous line-tracking znd retrieiving/throwing beads. The hardware used for the object detection is a NVIDIA Jetson Jetpack Nano 4GB and generic CSI camera.
 
-The customly built training model was on:
+Trained on 1500+ self-taken images. the customly built training model was on:
 - Mardi-Gras style beads of various color
 - Red Solo cups
 - Small nets attached to a wooden dowel
